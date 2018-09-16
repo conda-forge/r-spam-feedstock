@@ -1,5 +1,4 @@
-{% set version = '2.1-1' %}
-
+{% set version = '2.2-0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,47 +9,48 @@ package:
 source:
   fn: spam_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/spam_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/spam/spam_{{ version }}.tar.gz
-  sha256: acd3b00a4a3c8d61681620f11eb5d3b266ca911c0df09470bdcfeae1fcbddec8
+    - {{ cran_mirror }}/src/contrib/spam_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/spam/spam_{{ version }}.tar.gz
+  sha256: a18564b6930c10c2f5d1002414d6ec6ab335d57a29013f7ecd6d18e16a43670b
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('fortran') }}        # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-dotcall64
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-dotcall64
 
 test:
   commands:
-    - $R -e "library('spam')"  # [not win]
+    - $R -e "library('spam')"           # [not win]
     - "\"%R%\" -e \"library('spam')\""  # [win]
 
 about:
-  home: http://www.math.uzh.ch/furrer/software/spam/
-  license: LGPL-2
+  home: https://git.math.uzh.ch/reinhard.furrer/spam
+  license: LGPL-2 | BSD_3_clause
   summary: 'Set of functions for sparse matrix algebra. Differences with other sparse matrix
     packages are: (1) we only support (essentially) one sparse matrix format, (2) based
     on transparent and simple structure(s), (3) tailored for MCMC calculations within
     G(M)RF. (4) and it is fast and scalable (with the extension package spam64).'
-
   license_family: LGPL
 
 extra:
@@ -58,3 +58,6 @@ extra:
     - johanneskoester
     - bgruening
     - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
