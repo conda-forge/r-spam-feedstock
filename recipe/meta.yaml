@@ -1,4 +1,4 @@
-{% set version = '2.2-0' %}
+{% set version = '2.2-2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,25 +7,24 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: spam_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/spam_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spam/spam_{{ version }}.tar.gz
-  sha256: a18564b6930c10c2f5d1002414d6ec6ab335d57a29013f7ecd6d18e16a43670b
+  sha256: 711fdbfdac1e51dc7f684b139740f1d8c8aa6c6c0ae6bfaa8f7a7727ad7b8d08
 
 build:
   merge_build_host: True  # [win]
-  number: 1000
-  skip: true  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('fortran') }}  # [not win]
-    - {{native}}toolchain        # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler('m2w64_fortran') }}  # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
     - {{posix}}sed               # [win]
@@ -45,19 +44,37 @@ test:
     - "\"%R%\" -e \"library('spam')\""  # [win]
 
 about:
-  home: https://git.math.uzh.ch/reinhard.furrer/spam
+  home: https://www.math.uzh.ch/pages/spam/
   license: LGPL-2 | BSD_3_clause
   summary: 'Set of functions for sparse matrix algebra. Differences with other sparse matrix
     packages are: (1) we only support (essentially) one sparse matrix format, (2) based
     on transparent and simple structure(s), (3) tailored for MCMC calculations within
     G(M)RF. (4) and it is fast and scalable (with the extension package spam64).'
   license_family: LGPL
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/LGPL-2'
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+    - conda-forge/r
+
+# Package: spam
+# Type: Package
+# Title: SPArse Matrix
+# Version: 2.2-2
+# Date: 2019-03-07
+# Authors@R: c(person("Reinhard", "Furrer", role = c("aut", "cre"), email = "reinhard.furrer@math.uzh.ch"), person("Florian", "Gerber", role = c("aut"), email = "florian.gerber@math.uzh.ch"), person("Roman", "Flury", role = c("aut"), email = "roman.flury@math.uzh.ch"), person("Daniel", "Gerber", role = "ctb", email = "daniel_gerber_2222@hotmail.com"), person("Kaspar", "Moesinger", role = "ctb", email = "kaspar.moesinger@gmail.com"), person("Youcef", "Saad", role = "prg", comment = "SPARSEKIT http://www-users.cs.umn.edu/~saad/software/SPARSKIT/"), person(c("Esmond", "G."), "Ng", role = "prg", comment = "Fortran Cholesky routines"), person(c("Barry", "W."), "Peyton", role = "prg", comment = "Fortran Cholesky routines"), person(c("Joseph", "W.H."), "Liu", role = "prg", comment = "Fortran Cholesky routines"), person(c("Alan", "D."), "George", role = "prg", comment = "Fortran Cholesky routines"), person(c("Lehoucq", "B."), "Rich", role = "prg", comment = "ARPACK"), person(c("Maschhoff"), "Kristi", role = "prg", comment = "ARPACK"), person(c("Sorensen", "C."), "Danny", role = "prg", comment = "ARPACK"), person(c("Yang"), "Chao", role = "prg", comment = "ARPACK"))
+# Depends: R (>= 3.1), dotCall64, grid, methods
+# Suggests: spam64, fields, SparseM, Matrix, testthat, R.rsp, truncdist, knitr, rmarkdown
+# VignetteBuilder: R.rsp, knitr
+# Description: Set of functions for sparse matrix algebra. Differences with other sparse matrix packages are: (1) we only support (essentially) one sparse matrix format, (2) based on transparent and simple structure(s), (3) tailored for MCMC calculations within G(M)RF. (4) and it is fast and scalable (with the extension package spam64).
+# LazyData: true
+# License: LGPL-2 | BSD_3_clause + file LICENSE
+# URL: https://www.math.uzh.ch/pages/spam/
+# BugReports: https://git.math.uzh.ch/reinhard.furrer/spam/issues
+# RoxygenNote: 6.1.1
+# NeedsCompilation: yes
+# Packaged: 2019-03-07 18:02:25 UTC; roflur
+# Author: Reinhard Furrer [aut, cre], Florian Gerber [aut], Roman Flury [aut], Daniel Gerber [ctb], Kaspar Moesinger [ctb], Youcef Saad [prg] (SPARSEKIT http://www-users.cs.umn.edu/~saad/software/SPARSKIT/), Esmond G. Ng [prg] (Fortran Cholesky routines), Barry W. Peyton [prg] (Fortran Cholesky routines), Joseph W.H. Liu [prg] (Fortran Cholesky routines), Alan D. George [prg] (Fortran Cholesky routines), Lehoucq B. Rich [prg] (ARPACK), Maschhoff Kristi [prg] (ARPACK), Sorensen C. Danny [prg] (ARPACK), Yang Chao [prg] (ARPACK)
+# Maintainer: Reinhard Furrer <reinhard.furrer@math.uzh.ch>
+# Repository: CRAN
+# Date/Publication: 2019-03-08 16:30:03 UTC
