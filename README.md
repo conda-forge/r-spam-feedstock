@@ -3,7 +3,7 @@ About r-spam
 
 Home: https://www.math.uzh.ch/pages/spam/
 
-Package license: LGPL-2 | BSD_3_clause
+Package license: LGPL-2.0-only OR BSD-3-Clause
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-spam-feedstock/blob/master/LICENSE.txt)
 
