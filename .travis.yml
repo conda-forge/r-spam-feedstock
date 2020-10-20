@@ -3,18 +3,23 @@
 
 language: generic
 
-env:
-  global:
-    # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
-    - secure: "gADPdxjLaP42Mc253UbQY3XyrfXBBsLx1qNb6v0ea9HEvFz/nv6KMni7G4KBtU7ETiJQBlEWHG98MVMGUbT1RfnEqO7S29lNmvHKstfHlcc7Iq2CqmHxdOgJrxs+fTzbNjzQRgRDAp1YdyRMTbRvHBLKg1pQpdaL5KF8E462eEo1u9iLAXpZuf2tWxCD+BvmmGyC/mj1yenBQ3XdtsnhzOzAQYdhSWxj/ppcvWfl5oVcbm3uDg8i/yDPx52F7ivk7dLlBXK3mDbMDtP9DKK1lb7EHOJ5L0gDKaGRetiscm21Y0uYVfEpCuqCFB+Hbcj1Fz8JR33IAICrk6lA1HYYyGFyQaKLKaQGOk2epL/vWJiD/ZV/0B29Cx2f38IUXbBsVI64q3PcMHG+dsbM8c/CzUb2/0/1+ycZpLcJaSaPCyYTTcz7tUROZR5NutXKASF5aIDasEyatmjoHKXioK8Hkqny6djHVfU5ILJUHdQrkuXrnnKilmhWRAmUyfN05NJqi/UBJe0J+8RfDLVYYUksACAF/pV8alfFUimQGByfuS5FkXtk/l2E8CWEJTb1a2cX0GqEzZIccgCTdZivZaw/BRd7CW+EgPdKjNmg1Uui6vjgZG9uYi5X5pREjlSeMSx/glxbDNvEd1nZWVc3XJee+G5GG7AMYM4QrKXcEIhfszw="
+
 
 matrix:
   include:
-    - env: CONFIG=linux_ppc64le_r_base3.6target_platformlinux-ppc64le UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
+    - env: CONFIG=linux_ppc64le_c_compiler_version8fortran_compiler_version8r_base3.6target_platformlinux-ppc64le UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
       os: linux
       arch: ppc64le
 
-    - env: CONFIG=linux_ppc64le_r_base4.0target_platformlinux-ppc64le UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
+    - env: CONFIG=linux_ppc64le_c_compiler_version8fortran_compiler_version8r_base4.0target_platformlinux-ppc64le UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
+      os: linux
+      arch: ppc64le
+
+    - env: CONFIG=linux_ppc64le_c_compiler_version9fortran_compiler_version9r_base3.6target_platformlinux-ppc64le UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
+      os: linux
+      arch: ppc64le
+
+    - env: CONFIG=linux_ppc64le_c_compiler_version9fortran_compiler_version9r_base4.0target_platformlinux-ppc64le UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
       os: linux
       arch: ppc64le
 
