@@ -1,4 +1,4 @@
-{% set version = "2.6-0" %}
+{% set version = "2.7-0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spam_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spam/spam_{{ version }}.tar.gz
-  sha256: 638fdd658e94f7544b46f6b6568b20a9f390bcd703aff572a3a5249fef66be5c
+  sha256: 632b5c48f587a34c997a487b72099c9c89d76a43f2cd9a36cb95fdec1d07850d
 
 build:
   merge_build_host: true  # [win]
