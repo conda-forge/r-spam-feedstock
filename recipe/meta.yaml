@@ -23,6 +23,7 @@ requirements:
   build:
     - cross-r-base {{ r_base }}        # [build_platform != target_platform]
     - r-dotcall64                      # [build_platform != target_platform]
+    - r-rcpp >=1.0.8.3                 # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('fortran') }}        # [not win]
@@ -36,13 +37,13 @@ requirements:
     - libblas
     - liblapack
     - r-base
-    - r-rcpp >=1.0.8.3
     - r-dotcall64
+    - r-rcpp >=1.0.8.3
   run:
     - r-base
     - {{ native }}gcc-libs             # [win]
-    - r-rcpp >=1.0.8.3
     - r-dotcall64
+    - r-rcpp >=1.0.8.3
 
 test:
   commands:
