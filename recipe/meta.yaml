@@ -1,6 +1,5 @@
 {% set version = "2.10-0" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-spam
@@ -13,8 +12,7 @@ source:
   sha256: 719c86a23801ecf051ffd8291912ee3567af4010e74af470fbf09e274728ac79
 
 build:
-  merge_build_host: true  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -25,7 +23,9 @@ requirements:
     - r-dotcall64                      # [build_platform != target_platform]
     - r-rcpp >=1.0.8.3                 # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ compiler('fortran') }}        # [not win]
@@ -43,7 +43,6 @@ requirements:
     - r-rcpp >=1.0.8.3
   run:
     - r-base
-    - {{ native }}gcc-libs             # [win]
     - r-dotcall64
     - r-rcpp >=1.0.8.3
 
