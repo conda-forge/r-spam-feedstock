@@ -1,4 +1,4 @@
-{% set version = "2.11-1" %}
+{% set version = "2.11-3" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spam_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spam/spam_{{ version }}.tar.gz
-  sha256: 5c4cc53b81ea61d198c174a1342d14ea4af83b2936d384f46682965e352ff865
+  sha256: a2a64f87297181042378cde05b34b8dc59a36e4e8975f775b24c85836cb0b995
 
 build:
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
