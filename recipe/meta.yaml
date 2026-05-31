@@ -3,7 +3,7 @@
 
 package:
   name: r-spam
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
   url:
@@ -43,12 +43,12 @@ requirements:
     - libblas
     - liblapack
     - r-base
-    - r-dotcall64
     - r-rcpp >=1.0.8.3
+    - r-dotcall64
   run:
     - r-base
-    - r-dotcall64
     - r-rcpp >=1.0.8.3
+    - r-dotcall64
 
 test:
   commands:
@@ -56,7 +56,7 @@ test:
     - "\"%R%\" -e \"library('spam')\""  # [win]
 
 about:
-  home: https://www.math.uzh.ch/pages/spam/
+  home: https://www.math.uzh.ch/spam/
   license: LGPL-2.0-only OR BSD-3-Clause
   summary: "Set of functions for sparse matrix algebra. Differences with other sparse matrix packages are: (1) we only support (essentially) one sparse matrix format, (2) based on transparent and simple structure(s), (3) tailored for MCMC calculations within G(M)RF. (4) and it is fast and scalable (with the extension package
     spam64). Documentation about 'spam' is provided by vignettes included in this package, see also Furrer and Sain (2010) <doi:10.18637/jss.v036.i10>; see 'citation(\"spam\")' for details."
