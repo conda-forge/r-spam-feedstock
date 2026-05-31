@@ -7,7 +7,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-spam-feedstoc
 About r-spam
 ------------
 
-Home: https://www.math.uzh.ch/pages/spam/
+Home: https://www.math.uzh.ch/spam/
 
 Package license: LGPL-2.0-only OR BSD-3-Clause
 
@@ -16,7 +16,7 @@ Summary: Set of functions for sparse matrix algebra. Differences with other spar
 About r-spam
 ------------
 
-Home: https://www.math.uzh.ch/pages/spam/
+Home: https://www.math.uzh.ch/spam/
 
 Package license: LGPL-2.0-only OR BSD-3-Clause
 
